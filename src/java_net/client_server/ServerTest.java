@@ -37,14 +37,13 @@ public class ServerTest extends Thread{
 	@Override
 	public void run()
 	{
-		
+		System.out.println( " server is waiting ..");
 		while ( true )
 		{
 			try 
 			{
-				System.out.println( " server is waiting ..");
-				cs = ss.accept();
 				
+				cs = ss.accept();
 				 new ClientProcessor( cs )  .start();
 				
 			}

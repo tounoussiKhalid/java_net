@@ -15,11 +15,10 @@ public class ClientProcessor extends Thread{
 	
 	@Override
 	public void run() {
-		System.out.println( " Lancement du traitement de la connexion cliente" );
 		Scanner in = null;
 		PrintWriter out = null;
 
-		while ( true )
+		while ( ! sock.isClosed() )
 		{
 			
 			try

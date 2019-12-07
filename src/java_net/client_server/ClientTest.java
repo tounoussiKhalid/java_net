@@ -20,7 +20,7 @@ public class ClientTest {
 			
 			Scanner scanner = new Scanner ( System.in );
 			
-			while ( scanner.hasNextLine() )
+			while ( scanner.hasNextLine() && cs.isConnected() )
 			{
 				String msg = scanner.nextLine();
 				out.println( msg );
