@@ -11,7 +11,7 @@ public class ClientTest {
 	public static void main(String[] args) {
 		
 		try {
-			String ip_address = (args[0] == null) ? "localhost" : args[0];
+			String ip_address = (args == null) ? "localhost" : args[0];
 			Socket cs = new Socket( ip_address , 4000);
 						
 			PrintWriter out = new PrintWriter( cs.getOutputStream(), true  );

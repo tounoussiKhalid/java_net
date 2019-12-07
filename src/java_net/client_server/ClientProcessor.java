@@ -13,6 +13,40 @@ public class ClientProcessor extends Thread{
 		this.sock = sock;
 	}
 	
+	int handleMathematicalOperation( int a , char operand, int b )
+	{
+		int res = 0 ;
+		
+		try {
+			switch ( operand )
+			{
+				case '+' : res =  a + b; break;
+				case '-' : res =  a - b; break;
+				case '*' : res =  a * b; break;
+				case '/' : res =  a / b; break;
+			}
+		}
+		catch ( Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+	
+	int extractingParts ( String msg )
+	{
+		String[] parts = msg.split(" "); 
+		
+		int a = Integer.valueOf( parts[0].trim() );
+		
+		int b = Integer.valueOf( parts[2].trim() );
+		
+		char operand = parts[2].trim().charAt( 0 );
+		
+		return handleMathematicalOperation( a, operand , b );
+	}
+	
 	@Override
 	public void run() {
 		Scanner in = null;
@@ -28,11 +62,9 @@ public class ClientProcessor extends Thread{
 
 				 while ( in.hasNextLine() )
 				{
-					String msg =  in.nextLine().toUpperCase() ;
+					int msg =  extractingParts( in.nextLine() ) ;
 					out.println( msg );
 				}
-				
-				
 			}
 			catch (IOException e)
 			{
@@ -41,8 +73,7 @@ public class ClientProcessor extends Thread{
 			finally 
 			{
 				in.close();
-				out.close();
-				
+				out.close();	
 			}
 		}
 	}
