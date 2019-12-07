@@ -17,6 +17,8 @@ public class ClientProcessor extends Thread{
 	{
 		int res = 0 ;
 		
+		System.out.println( "a ="+ a + " operand :"+operand +" b ="+b);
+		
 		try {
 			switch ( operand )
 			{
@@ -36,15 +38,23 @@ public class ClientProcessor extends Thread{
 	
 	int extractingParts ( String msg )
 	{
-		String[] parts = msg.split(" "); 
+
+		String without = msg.trim().replaceAll("\\s+", " ");
+		System.out.println(" beg " +  msg  + " end " + without);
+		
+		String[] parts = without.split(" "); 
 		
 		int a = Integer.valueOf( parts[0].trim() );
 		
 		int b = Integer.valueOf( parts[2].trim() );
 		
-		char operand = parts[2].trim().charAt( 0 );
+		char operand = parts[1].trim().charAt( 0 );
 		
-		return handleMathematicalOperation( a, operand , b );
+		int res = handleMathematicalOperation( a, operand , b );
+		
+		System.out.println( "res " + res );
+		
+		return res; 
 	}
 	
 	@Override

@@ -11,7 +11,7 @@ public class ClientTest {
 	public static void main(String[] args) {
 		
 		try {
-			String ip_address = (args == null) ? "localhost" : args[0];
+			String ip_address = ( args.length == 0 ) ? "localhost" : args[0];
 			Socket cs = new Socket( ip_address , 4000);
 						
 			PrintWriter out = new PrintWriter( cs.getOutputStream(), true  );
@@ -20,7 +20,7 @@ public class ClientTest {
 			
 			Scanner scanner = new Scanner ( System.in );
 			
-			while ( scanner.hasNextLine() && cs.isConnected() )
+			while ( cs.isConnected() && scanner.hasNextLine() )
 			{
 				String msg = scanner.nextLine();
 				out.println( msg );
